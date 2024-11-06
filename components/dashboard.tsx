@@ -31,7 +31,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { signIn, signOut} from 'next-auth/react'
 import { useSession } from 'next-auth/react'
-import { signInWithGoogle, signOutUser } from '@/actions/authActions'
+import Link from 'next/link'
 
 const data = [
   {
@@ -74,37 +74,7 @@ export function Dashboard() {
 
   return (
     <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
-      {/* Sidebar */}
-      <aside className={`${isSidebarOpen ? 'w-64' : 'w-16'} bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out`}>
-        <div className="p-4">
-          <Button variant="ghost" className="w-full justify-start" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-            <Box className="mr-2 h-4 w-4" />
-            {isSidebarOpen && <span>Inventory System</span>}
-          </Button>
-        </div>
-        <nav className="space-y-2 p-2">
-          <Button variant="ghost" className="w-full justify-start">
-            <Home className="mr-2 h-4 w-4" />
-            {isSidebarOpen && <span>Dashboard</span>}
-          </Button>
-          <Button variant="ghost" className="w-full justify-start">
-            <Package className="mr-2 h-4 w-4" />
-            {isSidebarOpen && <span>Inventory</span>}
-          </Button>
-          <Button variant="ghost" className="w-full justify-start">
-            <ShoppingCart className="mr-2 h-4 w-4" />
-            {isSidebarOpen && <span>Orders</span>}
-          </Button>
-          <Button variant="ghost" className="w-full justify-start">
-            <Users className="mr-2 h-4 w-4" />
-            {isSidebarOpen && <span>Suppliers</span>}
-          </Button>
-          <Button variant="ghost" className="w-full justify-start">
-            <Settings className="mr-2 h-4 w-4" />
-            {isSidebarOpen && <span>Settings</span>}
-          </Button>
-        </nav>
-      </aside>
+     
 
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto p-8">
@@ -115,7 +85,7 @@ export function Dashboard() {
               <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                 <Avatar className="h-8 w-8">
                   {status === "authenticated" ? (
-                    <AvatarImage src="/avatars/01.png" alt="@username" />
+                    <AvatarImage src="https://github.com/shadcn.png" alt="@username" />
                   ) : (
                     <AvatarFallback>
                       <Users className="h-4 w-4" />
@@ -129,9 +99,9 @@ export function Dashboard() {
                 <>
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
-                      <p className="text-sm font-medium leading-none">username</p>
+                      <p className="text-sm font-medium leading-none">{session?.user?.name || ""}</p>
                       <p className="text-xs leading-none text-muted-foreground">
-                        user@example.com
+                        {session?.user?.email || ""}
                       </p>
                     </div>
                   </DropdownMenuLabel>
