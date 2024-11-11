@@ -4,7 +4,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { Sidebar } from "@/components/Sidebar";
-
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -22,6 +23,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const showSidebar = !pathname.startsWith("/api");
   return (
     <html lang="en">
       <body
@@ -29,7 +32,7 @@ export default function RootLayout({
       >
         <SessionProvider>
           <div className="flex">
-            <Sidebar />
+            {showSidebar && <Sidebar />}
             <main className="flex-1">{children}</main>
           </div>
         </SessionProvider>

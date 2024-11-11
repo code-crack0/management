@@ -16,10 +16,12 @@ export function Sidebar() {
         </Button>
       </div>
       <nav className="space-y-2 p-2">
+        <Link href="/">
         <Button variant="ghost" className="w-full justify-start">
           <Home className="mr-2 h-4 w-4" />
           {isSidebarOpen && <span>Dashboard</span>}
         </Button>
+        </Link>
         <Link href="/inventory">
           <Button variant="ghost" className="w-full justify-start">
             <Package className="mr-2 h-4 w-4" />
