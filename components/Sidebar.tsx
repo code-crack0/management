@@ -28,10 +28,12 @@ export function Sidebar() {
             {isSidebarOpen && <span>Inventory</span>}
           </Button>
         </Link>
+        <Link href="/orders">
         <Button variant="ghost" className="w-full justify-start">
           <ShoppingCart className="mr-2 h-4 w-4" />
           {isSidebarOpen && <span>Orders</span>}
         </Button>
+        </Link>
         <Button variant="ghost" className="w-full justify-start">
           <Users className="mr-2 h-4 w-4" />
           {isSidebarOpen && <span>Suppliers</span>}
