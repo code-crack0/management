@@ -6,6 +6,7 @@ import { SessionProvider } from "next-auth/react";
 import { Sidebar } from "@/components/Sidebar";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { ThemeProvider } from "@/components/theme-provider";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -31,10 +32,17 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SessionProvider>
-          <div className="flex">
-            {showSidebar && <Sidebar />}
-            <main className="flex-1">{children}</main>
-          </div>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="flex">
+              {showSidebar && <Sidebar />}
+              <main className="flex-1">{children}</main>
+            </div>
+          </ThemeProvider>
         </SessionProvider>
       </body>
     </html>
